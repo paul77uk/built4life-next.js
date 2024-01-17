@@ -1,7 +1,9 @@
 import prisma from "@/lib/prisma";
+import { unstable_noStore } from "next/cache";
 import Link from "next/link";
 
 export default async function Home() {
+  unstable_noStore();
   const programs = await prisma.program.findMany();
 
   const renderedPrograms = programs.map((program) => (
