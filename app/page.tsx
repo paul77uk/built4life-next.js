@@ -28,6 +28,25 @@ import { deleteProgram } from "@/actions";
 export default async function Home() {
   const programs = await prisma.program.findMany();
 
+  const createProgram = async (formData: FormData) => {
+    // This needs to be a server action!
+    "use server";
+
+    // check the user's inputs and make sure they're valid
+    const name = formData.get("name") as string;
+
+    // create a new record in the database
+    await prisma.program.create({
+      data: {
+        name,
+      },
+    });
+
+    revalidatePath("/");
+    // Redirect the user back to the root route
+    // redirect("/");
+  };
+
   const renderedPrograms = programs.map(({ id, name }) => {
     const deleteProgramAction = deleteProgram.bind(null, id);
     const editProgram = async (formData: FormData) => {
@@ -67,8 +86,8 @@ export default async function Home() {
               <div className="flex gap-2">
                 <Dialog>
                   <DialogTrigger asChild>
-                    <Button variant={"secondary"}>
-                      <FiEdit />
+                    <Button variant={"secondary"} className="p-2">
+                      <FiEdit size={20} />
                     </Button>
                   </DialogTrigger>
                   <DialogContent>
@@ -87,8 +106,8 @@ export default async function Home() {
                 </Dialog>
                 <Dialog>
                   <DialogTrigger asChild>
-                    <Button variant={"secondary"}>
-                      <RiDeleteBinLine />
+                    <Button variant={"secondary"} className="p-2">
+                      <RiDeleteBinLine size={20} />
                     </Button>
                   </DialogTrigger>
                   <DialogContent>
@@ -117,9 +136,22 @@ export default async function Home() {
     <div>
       <div className="flex my-2 justify-between items-center">
         <h1 className="text-xl font-bold">Programs</h1>
-        <Button asChild>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button>New</Button>
+          </DialogTrigger>
+          <DialogContent>
+            <form className="flex gap-2" action={createProgram}>
+              <Input type="text" name="name" required />
+              <DialogClose asChild>
+                <Button type="submit">Create</Button>
+              </DialogClose>
+            </form>
+          </DialogContent>
+        </Dialog>
+        {/* <Button asChild>
           <Link href={"/programs/new"}>New</Link>
-        </Button>
+        </Button> */}
       </div>
       <div className="flex flex-col gap-2">{renderedPrograms}</div>
 
