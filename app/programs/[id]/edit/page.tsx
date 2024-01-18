@@ -1,4 +1,5 @@
 import prisma from "@/lib/prisma";
+import { revalidatePath } from "next/cache";
 import { notFound, redirect } from "next/navigation";
 
 interface ProgramEditPageProps {
@@ -32,6 +33,8 @@ const ProgramEditPage = async ({ params: { id } }: ProgramEditPageProps) => {
     });
     console.log(name);
 
+    revalidatePath(`/programs/${id}`);
+    revalidatePath('/')
     // Redirect the user back to the root route
     redirect("/");
   };
@@ -54,6 +57,7 @@ const ProgramEditPage = async ({ params: { id } }: ProgramEditPageProps) => {
               defaultValue={program.name}
               type="text"
               name="name"
+              required
               className="border rounded p-2 w-full"
             />
           </div>
@@ -67,3 +71,11 @@ const ProgramEditPage = async ({ params: { id } }: ProgramEditPageProps) => {
   );
 };
 export default ProgramEditPage;
+
+export async function generateStaticParams() {
+  const programs = await prisma.program.findMany();
+
+  return programs.map((program) => ({
+    id: program.id.toString(),
+  }));
+}
