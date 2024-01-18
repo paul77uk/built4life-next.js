@@ -43,3 +43,11 @@ const ProgramShowPage = async ({ params: { id } }: ProgramShowPageProps) => {
   );
 };
 export default ProgramShowPage;
+
+export async function generateStaticParams() {
+  const programs = await prisma.program.findMany();
+
+  return programs.map((program) => ({
+    id: program.id.toString(),
+  }));
+}

@@ -1,4 +1,5 @@
 import prisma from "@/lib/prisma";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 const ProgramCreatePage = () => {
@@ -17,9 +18,11 @@ const ProgramCreatePage = () => {
     });
     console.log(name);
 
+    revalidatePath("/");
     // Redirect the user back to the root route
     redirect("/");
   };
+
   return (
     <form action={createProgram}>
       <h3 className="font-bold m-3">Create a Program</h3>
@@ -28,7 +31,12 @@ const ProgramCreatePage = () => {
           <label className="w-12" htmlFor="name">
             Name
           </label>
-          <input name="name" className="border rounded p-2 w-full" id="name" />
+          <input
+            name="name"
+            required
+            className="border rounded p-2 w-full"
+            id="name"
+          />
         </div>
 
         <button type="submit" className=" rounded p-2 bg-blue-200">
