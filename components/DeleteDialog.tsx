@@ -29,9 +29,11 @@ export const DeleteDialog = ({ id }: DeleteDialogProps) => {
           <DialogClose asChild>
             <Button variant={"secondary"}>Cancel</Button>
           </DialogClose>
-          <form action={deleteProgramAction}>
-            <Button>Delete</Button>
-          </form>
+          <DialogClose asChild>
+            <form action={deleteProgramAction}>
+              <Button>Delete</Button>
+            </form>
+          </DialogClose>
         </div>
       </DialogContent>
     </Dialog>
