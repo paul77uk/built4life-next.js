@@ -21,7 +21,7 @@ export const EditDialog = ({ id, name }: EditDialogProps) => {
       </DialogTrigger>
       <DialogContent>
         <form className="flex gap-2" action={editProgramAction}>
-          <Input defaultValue={name} type="text" name="name" required />
+          <Input defaultValue={name} type="text" name="name" autoComplete="off" required />
           <DialogClose asChild>
             <Button type="submit">Edit</Button>
           </DialogClose>
