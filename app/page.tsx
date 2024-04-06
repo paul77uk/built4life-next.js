@@ -9,7 +9,7 @@ const font = Poppins({ subsets: ["latin"], weight: ["600"] });
 const Home = () => {
   return (
     <main className="flex h-screen flex-col items-center justify-center">
-      <div className="space-y-6 text-center flex flex-col items-center border border-primary p-8 rounded-lg shadow-lg shadow-primary">
+      <div className="space-y-6 text-center flex flex-col items-center min-[430px]:border min-[430px]:border-primary p-8 rounded-lg min-[430px]:shadow-lg min-[430px]:shadow-primary">
         <h1
           className={cn(
             "flex items-center gap-1 text-6xl font-semibold text-white drop-shadow-md",
@@ -17,7 +17,7 @@ const Home = () => {
           )}
         >
           <div>
-            <LiaDumbbellSolid className="text-primary -ms-3" size={100} />
+            <LiaDumbbellSolid className="text-primary -ms-3 " size={100} />
           </div>
           <div>
             Built<span className="text-primary">4</span>Life

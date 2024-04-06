@@ -2,7 +2,7 @@ import { FiEdit } from "react-icons/fi";
 import { Dialog, DialogClose, DialogContent, DialogTrigger } from "./ui/dialog";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-import { editProgram } from "@/actions";
+import { editProgram } from "@/actions/actions";
 
 interface EditDialogProps {
   id: number;
@@ -21,7 +21,13 @@ export const EditDialog = ({ id, name }: EditDialogProps) => {
       </DialogTrigger>
       <DialogContent>
         <form className="flex gap-2" action={editProgramAction}>
-          <Input defaultValue={name} type="text" name="name" autoComplete="off" required />
+          <Input
+            defaultValue={name}
+            type="text"
+            name="name"
+            autoComplete="off"
+            required
+          />
           <DialogClose asChild>
             <Button type="submit">Edit</Button>
           </DialogClose>

@@ -1,4 +1,4 @@
-import { createProgram } from "@/actions";
+import { createProgram } from "@/actions/actions";
 import { Button } from "./ui/button";
 import { Dialog, DialogClose, DialogContent, DialogTrigger } from "./ui/dialog";
 import { Input } from "./ui/input";

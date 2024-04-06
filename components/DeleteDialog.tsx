@@ -7,7 +7,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "./ui/dialog";
-import { deleteProgram } from "@/actions";
+import { deleteProgram } from "@/actions/actions";
 
 interface DeleteDialogProps {
   id: number;

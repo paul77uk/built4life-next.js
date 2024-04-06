@@ -5,6 +5,9 @@ import { ProgramCard } from "@/components/ProgramCard";
 export default async function Home() {
   // await new Promise((resolve) => setTimeout(resolve, 5000));
   const programs = await prisma.program.findMany({
+    where: {
+      userId: "a1c1d3a7-15cc-457d-b6d7-6a96fe398114",
+    },
     orderBy: {
       createdAt: "asc",
     },

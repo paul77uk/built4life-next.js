@@ -1,13 +1,19 @@
 import prisma from "@/lib/prisma";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { deleteProgram } from "@/actions";
+import { deleteProgram } from "@/actions/actions";
 
 interface ProgramShowPageProps {
   params: {
     id: string;
   };
 }
+
+// type ProgramShowPageProps = {
+//   params: {
+//     id: string;
+//   };
+// };
 
 const ProgramShowPage = async ({ params: { id } }: ProgramShowPageProps) => {
   // wait 2 seconds
