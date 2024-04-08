@@ -2,6 +2,8 @@ import prisma from "@/lib/prisma";
 import { NewProgramDialog } from "@/components/NewProgramDialog";
 import { ProgramCard } from "@/components/ProgramCard";
 
+// export const dynamic = "force-dynamic";
+
 export default async function Home() {
   // await new Promise((resolve) => setTimeout(resolve, 5000));
   const programs = await prisma.program.findMany({

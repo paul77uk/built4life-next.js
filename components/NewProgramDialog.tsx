@@ -14,6 +14,7 @@ export const NewProgramDialog = () => {
       <DialogContent>
         <form className="flex gap-2" action={createProgramAction}>
           <Input type="text" name="name" required />
+
           <DialogClose asChild>
             <Button type="submit">Create</Button>
           </DialogClose>

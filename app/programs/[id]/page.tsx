@@ -37,23 +37,15 @@ const ProgramShowPage = async ({ params: { id } }: ProgramShowPageProps) => {
       <div className="flex m-4 justify-between items-center">
         <h1 className="text-xl font-bold">{program.name}</h1>
         <div className="flex gap-4">
-          <Link href={`/programs/${id}/edit`} className="p-2 border rounded">
+          {/* <Link href={`/programs/${id}/edit`} className="p-2 border rounded">
             Edit
           </Link>
           <form action={deleteProgramAction}>
             <button className="p-2 border rounded">Delete</button>
-          </form>
+          </form> */}
         </div>
       </div>
     </div>
   );
 };
 export default ProgramShowPage;
-
-export async function generateStaticParams() {
-  const programs = await prisma.program.findMany();
-
-  return programs.map((program) => ({
-    id: program.id.toString(),
-  }));
-}
