@@ -60,6 +60,8 @@ export const deleteProgram = async (id: number) => {
 
   // refresh the cache on the homepage to show the updated list of programs
   revalidatePath("/programs");
+  // because the program/id is cached, we need to revaildate that path as well
+  revalidatePath(`/programs/${id}`);
 
   // redirect("/");
 };

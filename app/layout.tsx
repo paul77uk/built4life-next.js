@@ -17,7 +17,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} dark`}>
+      <body
+        className={`${inter.className} dark`}
+        suppressHydrationWarning={true}
+      >
         <div className="container mx-auto px-12">{children}</div>
       </body>
     </html>

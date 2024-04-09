@@ -49,3 +49,12 @@ const ProgramShowPage = async ({ params: { id } }: ProgramShowPageProps) => {
   );
 };
 export default ProgramShowPage;
+
+// to cache each program page, we need to generate static paths
+export async function generateStaticParams() {
+  const programs = await prisma.program.findMany();
+
+  return programs.map(({ id }) => ({
+    id: id.toString(),
+  }));
+}
